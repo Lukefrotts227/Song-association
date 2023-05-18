@@ -15,7 +15,7 @@ import time
 import speech_recognition as sr
 
 
-with open(Words.txt', 'r') as file:
+with open('words.txt', 'r') as file:
     text = file.read()
 
 
@@ -267,5 +267,4 @@ if __name__ == '__main__':
     app3.run()
     print(scorer)
     print(app2.spoken.split())
-game5.py
-Displaying game5.py.
+
