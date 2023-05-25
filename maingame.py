@@ -46,6 +46,11 @@ class App(ctk.CTk):
 
         # Adding some styling to the buttons
 
+        self.grid_rowconfigure(0, weight=1)  # Make the first row expand vertically
+        self.grid_columnconfigure(0, weight=1)  # Make the first column expand horizontally
+        self.grid_columnconfigure(1, weight=1)  # Make the second column expand horizontally
+        self.grid_columnconfigure(2, weight=1)  # Make the third column expand horizontally
+
 
     
     def exitStage(self): 
