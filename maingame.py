@@ -28,11 +28,33 @@ class App(ctk.CTk):
 # Dimensions of the window will be 200x200
         self.geometry("200x200") 
 
+        self.timerchoice = 212
+
         self.generateButton = ctk.CTkButton(self, text = "Exit Button", command = self.exitStage) 
         self.generateButton.grid(row=1, column=1, padx = 20, pady = 20, sticky= "ew")
+
+        self.time10Button = ctk.CTkButton(self, text = "10 seconds", command = self.changeTime10())
+        self.time10Button.grid(row=2, column=1, padx = 20, pady = 20, sticky= "ew")
+
+        self.time20Button = ctk.CTkButton(self, text = "20 seconds", command = self.changeTime20())
+        self.time20Button.grid(row=2, column=2, padx = 20, pady = 20, sticky= "ew")
+
+        self.time25Button = ctk.CTkButton(self, text = "25 seconds", command = self.changeTime25())
+        self.time25Button.grid(row=2, column=3, padx = 20, pady = 20, sticky= "ew")
+
     
     def exitStage(self): 
         self.destroy()
+
+    def getTime(self): 
+        return self.timerchoice
+    
+    def changeTime10(self): 
+        self.timerchoice = 10 
+    def changeTime20(self): 
+        self.timerchoice = 20
+    def changeTime25(self): 
+        self.timerchoice = 25
 
 
 class AudioFile:
@@ -78,6 +100,7 @@ class AudioFile:
         self.recording_thread = Thread(target=self.record_audio)
         self.recording_thread.start()
 
+app = App()
 
 def main():
     pg.init()
@@ -86,7 +109,7 @@ def main():
     gray = pg.Color('gray19')
     blue = pg.Color('dodgerblue')
     clock = pg.time.Clock()
-    timer = 10
+    timer = app.getTime()
     dt = 0
     done = False
 
@@ -100,7 +123,7 @@ def main():
 
         timer -= dt
         if timer <= 0:
-            timer = 10
+            timer = app.getTime()
 
         screen.fill(gray)
         txt = font.render(str(round(timer, 2)), True, blue)
@@ -113,7 +136,6 @@ def main():
 
 
 if __name__ == '__main__':
-    app = App()
     # Runs the app
     app.mainloop() 
     main()
