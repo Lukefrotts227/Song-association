@@ -28,21 +28,24 @@ class App(ctk.CTk):
 # Sets the title of our window to "App"
         self.title("App")   
 # Dimensions of the window will be 200x200
-        self.geometry("200x200") 
-
+        self.geometry("700x200") 
+        
         self.timerchoice = 12
 
-        self.generateButton = ctk.CTkButton(self, text = "Exit Button", command = self.exitStage) 
-        self.generateButton.grid(row=1, column=1, padx = 20, pady = 20, sticky= "ew")
+        self.generateButton = ctk.CTkButton(self, text="Exit Button", command=self.exitStage, font=("Arial", 12))
+        self.generateButton.grid(row=0, column=0, columnspan=3, pady=10, padx=20, sticky="ew")
 
-        self.time10Button = ctk.CTkButton(self, text = "10 seconds", command = self.changeTime10)
-        self.time10Button.grid(row=2, column=1, padx = 20, pady = 20, sticky= "ew")
+        self.time10Button = ctk.CTkButton(self, text="10 seconds", command=self.changeTime10, font=("Arial", 10))
+        self.time10Button.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
-        self.time20Button = ctk.CTkButton(self, text = "20 seconds", command = self.changeTime20)
-        self.time20Button.grid(row=2, column=2, padx = 20, pady = 20, sticky= "ew")
+        self.time20Button = ctk.CTkButton(self, text="20 seconds", command=self.changeTime20, font=("Arial", 10))
+        self.time20Button.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
 
-        self.time25Button = ctk.CTkButton(self, text = "25 seconds", command = self.changeTime25)
-        self.time25Button.grid(row=2, column=3, padx = 20, pady = 20, sticky= "ew")
+        self.time25Button = ctk.CTkButton(self, text="25 seconds", command=self.changeTime25, font=("Arial", 10))
+        self.time25Button.grid(row=1, column=2, padx=10, pady=10, sticky="ew")
+
+        # Adding some styling to the buttons
+
 
     
     def exitStage(self): 
