@@ -15,11 +15,13 @@ PATH = "output3.wav"
 
 
 
+
 ctk.set_appearance_mode("System")
 
 ctk.set_default_color_theme("green") 
 
 class App(ctk.CTk):
+    timeinsecs = 10
 # Layout of the GUI will be written in the init itself
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,18 +30,18 @@ class App(ctk.CTk):
 # Dimensions of the window will be 200x200
         self.geometry("200x200") 
 
-        self.timerchoice = 212
+        self.timerchoice = 12
 
         self.generateButton = ctk.CTkButton(self, text = "Exit Button", command = self.exitStage) 
         self.generateButton.grid(row=1, column=1, padx = 20, pady = 20, sticky= "ew")
 
-        self.time10Button = ctk.CTkButton(self, text = "10 seconds", command = self.changeTime10())
+        self.time10Button = ctk.CTkButton(self, text = "10 seconds", command = self.changeTime10)
         self.time10Button.grid(row=2, column=1, padx = 20, pady = 20, sticky= "ew")
 
-        self.time20Button = ctk.CTkButton(self, text = "20 seconds", command = self.changeTime20())
+        self.time20Button = ctk.CTkButton(self, text = "20 seconds", command = self.changeTime20)
         self.time20Button.grid(row=2, column=2, padx = 20, pady = 20, sticky= "ew")
 
-        self.time25Button = ctk.CTkButton(self, text = "25 seconds", command = self.changeTime25())
+        self.time25Button = ctk.CTkButton(self, text = "25 seconds", command = self.changeTime25)
         self.time25Button.grid(row=2, column=3, padx = 20, pady = 20, sticky= "ew")
 
     
@@ -50,12 +52,11 @@ class App(ctk.CTk):
         return self.timerchoice
     
     def changeTime10(self): 
-        self.timerchoice = 10 
+        App.timeinsecs = 10
     def changeTime20(self): 
-        self.timerchoice = 20
+        App.timeinsecs = 20
     def changeTime25(self): 
-        self.timerchoice = 25
-
+        App.timeinsecs = 25
 
 class AudioFile:
     def __init__(self, filename):
@@ -82,7 +83,7 @@ class AudioFile:
             wf.writeframes(b''.join(self.frames))
             wf.close()
             print("Recording saved as output3.wav")
-            self.stop()
+            #self.stop()
 
     def start_recording(self):
         self.is_recording = True
@@ -102,6 +103,7 @@ class AudioFile:
 
 app = App()
 
+
 def main():
     pg.init()
     screen = pg.display.set_mode((640, 480))
@@ -109,7 +111,9 @@ def main():
     gray = pg.Color('gray19')
     blue = pg.Color('dodgerblue')
     clock = pg.time.Clock()
-    timer = app.getTime()
+    timer = App.timeinsecs
+    
+    
     dt = 0
     done = False
 
@@ -123,7 +127,7 @@ def main():
 
         timer -= dt
         if timer <= 0:
-            timer = app.getTime()
+            done = True
 
         screen.fill(gray)
         txt = font.render(str(round(timer, 2)), True, blue)
@@ -137,5 +141,7 @@ def main():
 
 if __name__ == '__main__':
     # Runs the app
+    
+
     app.mainloop() 
     main()
