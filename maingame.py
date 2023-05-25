@@ -1,7 +1,7 @@
 import os 
 import tkinter as tk 
 from tkinter import *
-import customtkinter
+import customtkinter as ctk 
 import random
 import time 
 
@@ -12,6 +12,27 @@ from threading import Thread
 
 scores = {}
 PATH = "output3.wav"
+
+
+
+ctk.set_appearance_mode("System")
+
+ctk.set_default_color_theme("green") 
+
+class App(ctk.CTk):
+# Layout of the GUI will be written in the init itself
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+# Sets the title of our window to "App"
+        self.title("App")   
+# Dimensions of the window will be 200x200
+        self.geometry("200x200") 
+
+        self.generateButton = ctk.CTkButton(self, text = "Exit Button", command = self.exitStage) 
+        self.generateButton.grid(row=1, column=1, padx = 20, pady = 20, sticky= "ew")
+    
+    def exitStage(self): 
+        self.destroy()
 
 
 class AudioFile:
@@ -92,4 +113,7 @@ def main():
 
 
 if __name__ == '__main__':
+    app = App()
+    # Runs the app
+    app.mainloop() 
     main()
