@@ -1,6 +1,8 @@
 # Song-association
 - My HawkHack project. Uses speech recognition to create a song association game.
 - A song-assosiation game is played by giving the user a word and having them sing a song based on that word
+- my first ever hackathon project
+- One of my first "larger" projects
 
 # How it was built
 - It was built using the Speech Reconginiton python library 
